@@ -3,7 +3,7 @@ import {
   removeStudentScoreBySubject,
   getStudentScoreBySubject,
 } from './ex2'
-
+  
 const store = [
   {
     subject: 'math',
