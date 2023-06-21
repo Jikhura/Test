@@ -74,7 +74,6 @@ export const getStudentScoreBySubject = (store: IStore[], subjects: string[]): I
       }
     });
   });
-
   return result
   return []
 }

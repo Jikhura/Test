@@ -1,6 +1,5 @@
 export class Utils {
   public static findMax(...args: number[]): number {
-    // return Math.max(...args);
     let max = args[0];
       for (let i = 1; i < args.length; i++) {
         if (args[i] > max) {
@@ -12,7 +11,6 @@ export class Utils {
   }
 
   public static findMin(...args: number[]): number {
-    // return Math.min(...args);
     let min = args[0];
       for (let i = 1; i < args.length; i++) {
         if (args[i] < min) {
