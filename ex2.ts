@@ -52,28 +52,26 @@ export const removeStudentScoreBySubject = (store: IStore[], record: IRemoveStud
 }
 
 export const getStudentScoreBySubject = (store: IStore[], subjects: string[]): IStudentScore[] => {
-  const result = [];
-  subjects.forEach(subject => {
-    const data = store.find(data =>data.subject === subject);
+  const result = subjects.reduce((accumulator, subject) => {
+    const data = store.find(data => data.subject === subject);
     if (data) {
       data.students.forEach(student => {
-        let Student = result.find(s => s.name === student.name);
-        if (!Student) {
-          Student = { name: student.name };
-          result.push(Student);
+        let dataStudent = accumulator.find(s => s.name === student.name);
+        if (!dataStudent) {
+         dataStudent = { name: student.name };
+          accumulator.push(dataStudent);
         }
-        Student[subject] = student.score;
+        dataStudent[subject] = student.score;
       });
     }
+    return accumulator;
+  }, []);
+
+  result.map(student => {
+    subjects.forEach(subject => student[subject] ||= null);
+    return student;
   });
 
-  result.forEach(student => {
-    subjects.forEach(subject => {
-      if (!student.hasOwnProperty(subject)) {
-        student[subject] = null;
-      }
-    });
-  });
-  return result
+  return result;
   return []
 }
