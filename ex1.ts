@@ -1,22 +1,24 @@
 export class Utils {
   public static findMax(...args: number[]): number {
-    let max = args[0];
-      for (let i = 1; i < args.length; i++) {
-        if (args[i] > max) {
-          max = args[i];
-        }
+    let max = args.reduce((max, numbers) => {
+      if (numbers > max) {
+        return numbers;
+      } else {
+        return max;
       }
-    return max;
+    }, args[0]);
+    return max
     return Infinity
   }
 
   public static findMin(...args: number[]): number {
-    let min = args[0];
-      for (let i = 1; i < args.length; i++) {
-        if (args[i] < min) {
-          min = args[i];
-        }
+    let min = args.reduce((min, numbers)=>{
+      if (numbers < min) {
+        return numbers;
+      } else {
+        return min;
       }
+    },args[0]);
     return min;
     return Infinity
   }
