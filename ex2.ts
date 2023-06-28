@@ -48,7 +48,6 @@ export const removeStudentScoreBySubject = (store: IStore[], record: IRemoveStud
     return item;
   });
   return updatedStore
-  return store
 }
 
 export const getStudentScoreBySubject = (store: IStore[], subjects: string[]): IStudentScore[] => {
@@ -71,7 +70,5 @@ export const getStudentScoreBySubject = (store: IStore[], subjects: string[]): I
     subjects.forEach(subject => student[subject] ||= null);
     return student;
   });
-
   return result;
-  return []
 }

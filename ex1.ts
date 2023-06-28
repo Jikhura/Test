@@ -1,40 +1,26 @@
 export class Utils {
   public static findMax(...args: number[]): number {
-    let max = args.reduce((max, numbers) => {
-      if (numbers > max) {
-        return numbers;
-      } else {
-        return max;
-      }
-    }, args[0]);
-    return max
-    return Infinity
+    let max = args.reduce((prev, numbers) =>  prev > numbers  ? prev : numbers,args[0]);
+    return max;
   }
 
   public static findMin(...args: number[]): number {
-    let min = args.reduce((min, numbers)=>{
-      if (numbers < min) {
-        return numbers;
-      } else {
-        return min;
-      }
-    },args[0]);
+    let min = args.reduce((prev, numbers)=> prev < numbers ? prev : numbers,args[0]);
     return min;
-    return Infinity
   }
 
   public static reformatData(x: any): Record<string, any> {
-    const studentData = {};
-    x.forEach(item => {
+    const studentData = x.reduce((acc,item)=> { 
       const { name, role } = item;
-      if (!studentData[role]) {
-        studentData[role] = [];
-      }
-      studentData[role].push({ nickname: name });
-    });
+        if (!acc[role]) {
+          acc[role] = [];
+        }
+        acc[role].push({ nickname: name });
+        return acc
+    }, {});
     return studentData
-    return {}
   }
+  
 }
 
 export default Utils
